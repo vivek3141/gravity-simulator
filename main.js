@@ -37,32 +37,29 @@ function draw() {
         nF_y = 0;
 
         for (j = 0; j < objects.length; j++) {
-            if (j == i) {
-                continue;
+
+            // F_g = GMm/r^2
+            dx = objects[j].x - objects[i].x;
+            dy = objects[j].y - objects[i].y;
+
+            r = dx ** 2 + dy ** 2;
+            F = G * M * objects[j].mass / r;
+            theta = Math.atan(dy / dx);
+
+            F_x = Math.abs(F * Math.cos(theta));
+            F_y = Math.abs(F * Math.sin(theta));
+
+            if (objects[j].x < objects[i].x) {
+                F_x = -F_x;
             }
-            else {
-                // F_g = GMm/r^2
-                dx = objects[j].x - objects[i].x;
-                dy = objects[j].y - objects[i].y;
-
-                r = dx ** 2 + dy ** 2;
-                F = G * M * objects[j].mass / r;
-                theta = Math.atan(dy / dx);
-
-                F_x = Math.abs(F * Math.cos(theta));
-                F_y = Math.abs(F * Math.sin(theta));
-
-                if (objects[j].x < objects[i].x) {
-                    F_x = -F_x;
-                }
-                if (objects[j].y < objects[i].y) {
-                    F_y = -F_y;
-                }
-
-                nF_x += F_x;
-                nF_y += F_y;
-
+            if (objects[j].y < objects[i].y) {
+                F_y = -F_y;
             }
+
+            nF_x += F_x;
+            nF_y += F_y;
+
+
         }
 
         // F = ma -> a = F/m
