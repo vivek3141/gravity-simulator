@@ -4,7 +4,7 @@ let G = 6.67e-11;
 
 function setup() {
     createCanvas(window.innerWidth, window.innerHeight);
-    massSlider = createSlider(0, 255, 100);
+    massSlider = createSlider(0, 100, 20);
     massSlider.position(20, 20);
 }
 
@@ -16,7 +16,8 @@ function draw() {
 }
 
 function mouseClicked() {
-    object = { obj: ellipse(mouseX, mouseY, 20, 20), mass: 10 }
+    const mass = massSlider.value();
+    object = { obj: ellipse(mouseX, mouseY, mass, mass), mass: mass }
     objects.push(object);
     return false;
 }
