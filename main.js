@@ -1,5 +1,5 @@
 let objects = [];
-let G = 1e5;
+let G = 1e4;
 let fr = 24;
 
 
@@ -11,6 +11,9 @@ function setup() {
     clearButton = createButton("Clear");
     clearButton.position(60, 60);
     clearButton.mouseClicked(clearObjects);
+
+    gSlider = createSlider(1e2, 1e10, 1e4);
+    gSlider.position(20, 100);
 
     frameRate(fr);
 }
@@ -24,6 +27,8 @@ function clearObjects() {
 
 function draw() {
     background(0);
+    G = gSlider.value();
+
     for (i = 0; i < objects.length; i++) {
         objects[i].display()
         const M = objects[i].mass;
