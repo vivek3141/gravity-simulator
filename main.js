@@ -20,17 +20,17 @@ function clearObjects() {
 }
 
 function draw() {
+    background(0);
     for (i = 0; i < objects.length; i++) {
         objects[i].display()
     }
-    background(0);
+    
     //console.log(mouseX, mouseY);
 }
 
 function mouseClicked() {
     const mass = massSlider.value();
     if (mouseX > 150 && mouseY > 40) {
-        console.log("Ehl");
         objects.push(new Obj(mass, mouseX, mouseY));
     }
     return false;
