@@ -13,11 +13,14 @@ function draw() {
         draw(objects[i].obj);
     }
     background(0);
+    console.log(mouseX, mouseY);
 }
 
 function mouseClicked() {
     const mass = massSlider.value();
-    object = { obj: ellipse(mouseX, mouseY, mass, mass), mass: mass }
-    objects.push(object);
+    if (mouseX > 20 && mouseY > 20) {
+        object = { obj: ellipse(mouseX, mouseY, mass, mass), mass: mass }
+        objects.push(object);
+    }
     return false;
 }
