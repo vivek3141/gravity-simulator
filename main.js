@@ -25,17 +25,23 @@ function draw() {
         objects[i].display()
         const M = objects[i].mass;
 
-        net_force = [0, 0];
+        nF_x = 0;
+        nF_y = 0;
+        
         for (j = 0; j < objects.length; j++) {
             if (j == i) {
                 continue;
             }
             else {
                 // F_g = GMm/r^2
-                dx = objects[j].x - objects[i].x
-                dy = objects[j].y - objects[i].y
+                dx = objects[j].x - objects[i].x;
+                dy = objects[j].y - objects[i].y;
                 r = dx ** 2 + dy ** 2;
-                F = G * M * objects[j].mass / r
+                F = G * M * objects[j].mass / r;
+                theta = Math.atan(dy/dx);
+                F_x = F * Math.cos(theta);
+                F_y = F * Math.sin(theta);
+                net_forc
 
             }
         }
