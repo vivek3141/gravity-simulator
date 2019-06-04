@@ -1,5 +1,5 @@
 let objects = [];
-//let G = 6.67e-11;
+let G = 6.67e-11;
 
 
 function setup() {
@@ -23,8 +23,24 @@ function draw() {
     background(0);
     for (i = 0; i < objects.length; i++) {
         objects[i].display()
+        const M = objects[i].mass;
+
+        net_force = [0, 0];
+        for (j = 0; j < objects.length; j++) {
+            if (j == i) {
+                continue;
+            }
+            else {
+                // F_g = GMm/r^2
+                dx = objects[j].x - objects[i].x
+                dy = objects[j].y - objects[i].y
+                r = dx ** 2 + dy ** 2;
+                F = G * M * objects[j].mass / r
+
+            }
+        }
     }
-    
+
     //console.log(mouseX, mouseY);
 }
 
@@ -37,13 +53,13 @@ function mouseClicked() {
 }
 
 
-class Obj{
-    constructor(mass, x, y){
+class Obj {
+    constructor(mass, x, y) {
         this.mass = mass;
         this.x = x;
         this.y = y;
     }
-    display(){
+    display() {
         ellipse(this.x, this.y, this.mass, this.mass);
     }
 }
