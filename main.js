@@ -1,5 +1,6 @@
 let objects = [];
 let G = 6.67e-11;
+let fr = 24;
 
 
 function setup() {
@@ -10,6 +11,8 @@ function setup() {
     clearButton = createButton("Clear");
     clearButton.position(60, 60);
     clearButton.mouseClicked(clearObjects);
+
+    frameRate(fr);
 }
 
 function clearObjects() {
@@ -27,7 +30,7 @@ function draw() {
 
         nF_x = 0;
         nF_y = 0;
-        
+
         for (j = 0; j < objects.length; j++) {
             if (j == i) {
                 continue;
@@ -36,15 +39,27 @@ function draw() {
                 // F_g = GMm/r^2
                 dx = objects[j].x - objects[i].x;
                 dy = objects[j].y - objects[i].y;
+
                 r = dx ** 2 + dy ** 2;
                 F = G * M * objects[j].mass / r;
                 theta = Math.atan(dy/dx);
+
                 F_x = F * Math.cos(theta);
                 F_y = F * Math.sin(theta);
-                net_forc
+                
+                nF_x += F_x;
+                nF_y += F_y;
 
             }
         }
+
+        // F = ma -> a = F/m
+        // v = at -> t = size of one frame
+        v_x = nF_x * (1/fr) / M;
+        v_y = nF_y * (1/fr) / M;
+
+        objects[i].x += v_x;
+        objects[i].y += v_y;
     }
 
     //console.log(mouseX, mouseY);
