@@ -14,6 +14,7 @@ function setup() {
 
 function clear() {
     objects = [];
+    setup();
 }
 
 function draw() {
