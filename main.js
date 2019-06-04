@@ -1,5 +1,5 @@
 let objects = [];
-let G = 6.67e-11;
+let G = 1e5;
 let fr = 24;
 
 
@@ -42,11 +42,18 @@ function draw() {
 
                 r = dx ** 2 + dy ** 2;
                 F = G * M * objects[j].mass / r;
-                theta = Math.atan(dy/dx);
+                theta = Math.atan(dy / dx);
 
-                F_x = F * Math.cos(theta);
-                F_y = F * Math.sin(theta);
-                
+                F_x = Math.abs(F * Math.cos(theta));
+                F_y = Math.abs(F * Math.sin(theta));
+
+                if (objects[j].x < objects[i].x) {
+                    F_x = -F_x;
+                }
+                if (objects[j].y < objects[i].y) {
+                    F_y = -F_y;
+                }
+
                 nF_x += F_x;
                 nF_y += F_y;
 
@@ -55,8 +62,8 @@ function draw() {
 
         // F = ma -> a = F/m
         // v = at -> t = size of one frame
-        v_x = nF_x * (1/fr) / M;
-        v_y = nF_y * (1/fr) / M;
+        v_x = nF_x * (1 / fr) / M;
+        v_y = nF_y * (1 / fr) / M;
 
         objects[i].x += v_x;
         objects[i].y += v_y;
