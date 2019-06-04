@@ -6,6 +6,14 @@ function setup() {
     createCanvas(window.innerWidth, window.innerHeight);
     massSlider = createSlider(0, 100, 20);
     massSlider.position(20, 20);
+
+    clearButton = createButton("Clear");
+    clearButton.position(60, 60);
+    clearButton.mouseClicked(clear);
+}
+
+function clear() {
+    objects = [];
 }
 
 function draw() {
