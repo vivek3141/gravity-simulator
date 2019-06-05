@@ -54,8 +54,13 @@ function draw() {
                     F_y = -F_y;
                 }
 
-                nF_x += F_x;
-                nF_y += F_y;
+                const k = (1 / fr) / M;
+                if ((objects[j].x - (k * F_x + objects[i].x) < 0) == (dx < 0) ||
+                    (objects[j].y - (k * F_y + objects[i].y) < 0) == (dy < 0)
+                ) {
+                    nF_x += F_x;
+                    nF_y += F_y;
+                }
             }
 
 
