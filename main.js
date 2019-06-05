@@ -1,6 +1,6 @@
 let objects = [];
 let G = 1e4;
-let fr = 24;
+let fr = 60;
 
 
 function setup() {
@@ -20,9 +20,6 @@ function setup() {
 
 function clearObjects() {
     objects = [];
-    //console.log("HELLpooo");
-    //    background(0);
-    //    setup();
 }
 
 function draw() {
