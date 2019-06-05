@@ -60,7 +60,7 @@ function draw() {
                 ) {
                     nF_x += F_x;
                     nF_y += F_y;
-                }
+                }k
             }
 
 
